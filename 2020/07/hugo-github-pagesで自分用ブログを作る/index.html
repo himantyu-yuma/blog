@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Hugo&#43;GitHub Pagesで自分用ブログを作る" />
+<meta property="og:description" content="環境  OS：Windows10 64bit Hugo v0.73.0  導入手順 GitHubの準備  ブログ置く用のリポジトリを作る リポジトリの「Setting」の「Options」を開く 「GitHub Pages」欄の「Source」を「master branch」にする  ローカルにクローンしてくる  Hugoのダウンロード  ここから最新版のHugoをダウンロードする 今回私はWindows10 64bitだったので，「hugo_0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://himantyu-yuma.github.io/blog/2020/07/hugo-github-pages%E3%81%A7%E8%87%AA%E5%88%86%E7%94%A8%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E4%BD%9C%E3%82%8B/" />
+<meta property="article:published_time" content="2020-07-11T22:03:19+09:00" />
+<meta property="article:modified_time" content="2020-07-11T22:03:19+09:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hugo&#43;GitHub Pagesで自分用ブログを作る"/>
+<meta name="twitter:description" content="環境  OS：Windows10 64bit Hugo v0.73.0  導入手順 GitHubの準備  ブログ置く用のリポジトリを作る リポジトリの「Setting」の「Options」を開く 「GitHub Pages」欄の「Source」を「master branch」にする  ローカルにクローンしてくる  Hugoのダウンロード  ここから最新版のHugoをダウンロードする 今回私はWindows10 64bitだったので，「hugo_0."/>
+<meta name="generator" content="Hugo 0.73.0" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Hugo+GitHub Pagesで自分用ブログを作る",
+  "url": "https://himantyu-yuma.github.io/blog/2020/07/hugo-github-pages%E3%81%A7%E8%87%AA%E5%88%86%E7%94%A8%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E4%BD%9C%E3%82%8B/",
+  "wordCount": "84",
+  "datePublished": "2020-07-11T22:03:19+09:00",
+  "dateModified": "2020-07-11T22:03:19+09:00",
+  "author": {
+    "@type": "Person",
+    "name": "笠原 有真"
+  },
+  "keywords": "その他, Hugo"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://himantyu-yuma.github.io/blog/2020/07/hugo-github-pages%E3%81%A7%E8%87%AA%E5%88%86%E7%94%A8%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E4%BD%9C%E3%82%8B/">
+
+    <title>Hugo&#43;GitHub Pagesで自分用ブログを作る | 備忘録とか</title>
+
+    
+    <!-- combined, minified CSS -->
+    
+    <link href="https://himantyu-yuma.github.io/blog/css/style.3714a3e25ea206819937abb81660d98722c61c086b334eba828cc1f801144d20.css" rel="stylesheet">
+    
+
+    <!-- minified Font Awesome for SVG icons -->
+    
+    <script defer src="https://himantyu-yuma.github.io/blog/js/fontawesome.min.16a86fa8fbdecc0f27392feecb61ee0803a507820bded359407103a49126b52c.js" integrity="sha256-FqhvqPvezA8nOS/uy2HuCAOlB4IL3tNZQHEDpJEmtSw=" crossorigin="anonymous"></script>
+
+    <!-- RSS 2.0 feed -->
+    
+
+    
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://himantyu-yuma.github.io/blog/">Home</a>
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title" dir="auto"><a href="https://himantyu-yuma.github.io/blog/" rel="home">備忘録とか</a></h1>
+        <p class="lead blog-description" dir="auto">備忘録とか情報共有とか載せていきます．</p>
+      </div>
+    </header>
+    
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title" dir="auto"><a href="https://himantyu-yuma.github.io/blog/2020/07/hugo-github-pages%E3%81%A7%E8%87%AA%E5%88%86%E7%94%A8%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E4%BD%9C%E3%82%8B/">Hugo+GitHub Pagesで自分用ブログを作る</a></h2>
+    <p class="blog-post-meta"><time datetime="2020-07-11T22:03:19+09:00">Sat Jul 11, 2020</time> by 笠原 有真 in 
+<span class="fas fa-folder" aria-hidden="true"></span>&nbsp;<a href="https://himantyu-yuma.github.io/blog/categories/%E3%81%9D%E3%81%AE%E4%BB%96/" rel="category tag">その他</a>
+
+
+<span class="fas fa-tag" aria-hidden="true"></span>&nbsp;<a href="https://himantyu-yuma.github.io/blog/tags/hugo/" rel="tag">Hugo</a>
+
+</p>
+  </header>
+  <h2 id="環境">環境</h2>
+<ul>
+<li>OS：Windows10 64bit</li>
+<li>Hugo v0.73.0</li>
+</ul>
+<h2 id="導入手順">導入手順</h2>
+<h3 id="githubの準備">GitHubの準備</h3>
+<ul>
+<li>ブログ置く用のリポジトリを作る</li>
+<li>リポジトリの「Setting」の「Options」を開く</li>
+<li>「GitHub Pages」欄の「Source」を「master branch」にする</li>
+<li><img src="https://himantyu-yuma.github.io/blog/images/image1.png" alt="スクショ"></li>
+<li>ローカルにクローンしてくる</li>
+</ul>
+<h3 id="hugoのダウンロード">Hugoのダウンロード</h3>
+<ul>
+<li>ここから最新版のHugoをダウンロードする</li>
+<li>今回私はWindows10 64bitだったので，「hugo_0.73.0_Windows-64bit.zip」をダウンロード</li>
+<li><img src="https://himantyu-yuma.github.io/blog/images/image2.png" alt="スクショ"></li>
+<li>ダウンロードしたら適当な場所に解凍し，中身の「hugo.exe」をわかりやすいところに置いておく（C:\hugo\とか）</li>
+</ul>
+<h3 id="hugoのパスを通す">Hugoのパスを通す</h3>
+<ul>
+<li>「Windowsキー+S」で検索状態にし，「環境変数」と入力してEnter</li>
+<li>「環境変数」をクリック</li>
+<li><img src="https://himantyu-yuma.github.io/blog/images/image3.png" alt="スクショ"></li>
+<li>下側の「システム環境変数」の「Path」をダブルクリック</li>
+<li><img src="https://himantyu-yuma.github.io/blog/images/image4.png" alt="スクショ"></li>
+<li>「新規」をクリックして，先ほど「hugo.exe」を置いたパスを指定（私は C:\hugo\）</li>
+</ul>
+<h3 id="環境構築">環境構築</h3>
+<ul>
+<li>適当なとこに作業用ディレクトリを作成(Documents/workspace的な)</li>
+<li>PowerShell起動して移動(cd Documents/workspace)</li>
+<li><code>hugo new site blog</code> を実行</li>
+<li>blogディレクトリに移動</li>
+<li>ここで色々やる</li>
+</ul>
+<h3 id="hugoテーマのダウンロード">Hugoテーマのダウンロード</h3>
+<ul>
+<li><a href="https://themes.gohugo.io/">ここ</a>からテーマを探す
+<ul>
+<li><a href="https://themes.gohugo.io/hugo-theme-bootstrap4-blog">Hugo Bootstrap v4 Blog</a></li>
+<li><a href="https://themes.gohugo.io/hugo-theme-cleanwhite/">Clean White</a></li>
+<li><a href="https://themes.gohugo.io/mainroad/">Mainroad</a></li>
+<li>あたりがおすすめ（らしい）</li>
+</ul>
+</li>
+<li>githubのページからclone用のURLをコピー</li>
+<li><img src="https://himantyu-yuma.github.io/blog/images/image5.png" alt="スクショ"></li>
+<li>PowerShellを起動して，./themes に移動したあと，<code>git clone [clone用URL]</code>を実行</li>
+<li>blog/に戻る</li>
+<li>すでにあるconfig.tomlを別名にしておいて(mv config.toml config.toml.org)</li>
+<li><code>cp .\themes\hugo-theme-bootstrap4-blog\exampleSite\config.toml ./</code>を実行</li>
+<li>レイアウトとか変えたいときはこのconfig.tomlを変更する</li>
+</ul>
+<h3 id="ローカルでのテスト">ローカルでのテスト</h3>
+<ul>
+<li><code>hugo server</code> を実行</li>
+<li>localhost:1313/　にアクセス</li>
+<li>ちゃんとページが表示されていればOK</li>
+<li>タイトルとかはconfig.tomlとにらめっこしながら頑張ろう</li>
+</ul>
+<h3 id="新規ポストの作成">新規ポストの作成</h3>
+<ul>
+<li><code>hugo new posts/sample.md</code> を実行</li>
+<li>sample.mdファイルをテキストエディタで開いて編集</li>
+<li>書き終わったら<code>draft: false</code> にするのを忘れずに</li>
+</ul>
+<h3 id="静的ファイルの生成">静的ファイルの生成</h3>
+<ul>
+<li>blogディレクトリに戻る</li>
+<li><code>hugo</code> を実行</li>
+<li>publicディレクトリに静的ファイルが入ってる</li>
+</ul>
+<h3 id="githubへのアップロード">GitHubへのアップロード</h3>
+<ul>
+<li>publicディレクトリの「中身」をcloneしてきたフォルダに入れる</li>
+<li>プッシュ</li>
+<li>おわり</li>
+</ul>
+
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Share</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fhimantyu-yuma.github.io%2fblog%2f2020%2f07%2fhugo-github-pages%25E3%2581%25A7%25E8%2587%25AA%25E5%2588%2586%25E7%2594%25A8%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%25E3%2582%2592%25E4%25BD%259C%25E3%2582%258B%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fhimantyu-yuma.github.io%2fblog%2f2020%2f07%2fhugo-github-pages%25E3%2581%25A7%25E8%2587%25AA%25E5%2588%2586%25E7%2594%25A8%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%25E3%2582%2592%25E4%25BD%259C%25E3%2582%258B%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fhimantyu-yuma.github.io%2fblog%2f2020%2f07%2fhugo-github-pages%25E3%2581%25A7%25E8%2587%25AA%25E5%2588%2586%25E7%2594%25A8%25E3%2583%2596%25E3%2583%25AD%25E3%2582%25B0%25E3%2582%2592%25E4%25BD%259C%25E3%2582%258B%2f&amp;text=Hugo%2bGitHub%20Pages%e3%81%a7%e8%87%aa%e5%88%86%e7%94%a8%e3%83%96%e3%83%ad%e3%82%b0%e3%82%92%e4%bd%9c%e3%82%8b" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>ABOUT ME</h4>
+    <p dir="auto">小樽商科大学<br>社会情報学科3年<br>木村ゼミ<br>創作活動部<br>室内管弦楽団(Vc.)</p>
+  </section>
+  
+
+  
+    <section class="sidebar-module">
+    <h4>最近の投稿</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="https://himantyu-yuma.github.io/blog/2020/07/hugo-github-pages%E3%81%A7%E8%87%AA%E5%88%86%E7%94%A8%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E4%BD%9C%E3%82%8B/">Hugo+GitHub Pagesで自分用ブログを作る</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+  <section class="sidebar-module">
+    <h4>外部リンク</h4>
+    <ol class="list-unstyled">
+      
+      <li><a href="https://himantyu-yuma.github.io/portfolio/">Portfolio</a></li>
+      
+      <li><a href="https://twitter.com/k_y_kenzen">Twitter</a></li>
+      
+    </ol>
+  </section>
+  
+  
+  <section class="sidebar-module">
+    <h4>カテゴリ</h4>
+    <ol class="list-unstyled">
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/categories/%E3%81%9D%E3%81%AE%E4%BB%96">その他</a></li>
+      
+    </ol>
+  </section>
+  
+  
+  <section class="sidebar-module">
+    <h4>タグ</h4>
+    <ol class="list-unstyled">
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/tags/hugo">hugo</a></li>
+      
+    </ol>
+  </section>
+  
+
+</aside>
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p dir="auto">
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>

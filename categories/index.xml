@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+<<<<<<< HEAD
+    <title>Categories on 備忘録とか</title>
+    <link>https://himantyu-yuma.github.io/blog/categories/</link>
+    <description>Recent content in Categories on 備忘録とか</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-ja</language>
+    <lastBuildDate>Sat, 11 Jul 2020 22:03:19 +0900</lastBuildDate>
+=======
+    <title>Categories on Hugo Bootstrap v4 Blog</title>
+    <link>https://himantyu-yuma.github.io/blog/categories/</link>
+    <description>Recent content in Categories on Hugo Bootstrap v4 Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+>>>>>>> origin/master
+    
+	<atom:link href="https://himantyu-yuma.github.io/blog/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+<<<<<<< HEAD
+    <item>
+      <title>その他</title>
+      <link>https://himantyu-yuma.github.io/blog/categories/%E3%81%9D%E3%81%AE%E4%BB%96/</link>
+      <pubDate>Sat, 11 Jul 2020 22:03:19 +0900</pubDate>
+      
+      <guid>https://himantyu-yuma.github.io/blog/categories/%E3%81%9D%E3%81%AE%E4%BB%96/</guid>
+      <description></description>
+    </item>
+    
+=======
+>>>>>>> origin/master
+  </channel>
+</rss>
