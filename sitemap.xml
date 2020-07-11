@@ -4,7 +4,6 @@
   
   <url>
     <loc>https://himantyu-yuma.github.io/blog/categories/</loc>
-<<<<<<< HEAD
     <lastmod>2020-07-11T22:03:19+09:00</lastmod>
   </url>
   
@@ -21,17 +20,10 @@
   <url>
     <loc>https://himantyu-yuma.github.io/blog/posts/</loc>
     <lastmod>2020-07-11T22:03:19+09:00</lastmod>
-=======
-  </url>
-  
-  <url>
-    <loc>https://himantyu-yuma.github.io/blog/</loc>
->>>>>>> origin/master
   </url>
   
   <url>
     <loc>https://himantyu-yuma.github.io/blog/tags/</loc>
-<<<<<<< HEAD
     <lastmod>2020-07-11T22:03:19+09:00</lastmod>
   </url>
   
@@ -43,8 +35,6 @@
   <url>
     <loc>https://himantyu-yuma.github.io/blog/</loc>
     <lastmod>2020-07-11T22:03:19+09:00</lastmod>
-=======
->>>>>>> origin/master
   </url>
   
 </urlset>
