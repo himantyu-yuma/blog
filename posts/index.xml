@@ -6,10 +6,24 @@
     <description>Recent content in Posts on 備忘録とか</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-ja</language>
-    <lastBuildDate>Sat, 11 Jul 2020 22:03:19 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 12 Jul 2020 17:31:18 +0900</lastBuildDate>
     
 	<atom:link href="https://himantyu-yuma.github.io/blog/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>EEVEEレンダラーで良い感じのグラスを作る</title>
+      <link>https://himantyu-yuma.github.io/blog/2020/07/eevee%E3%83%AC%E3%83%B3%E3%83%80%E3%83%A9%E3%83%BC%E3%81%A7%E8%89%AF%E3%81%84%E6%84%9F%E3%81%98%E3%81%AE%E3%82%B0%E3%83%A9%E3%82%B9%E3%82%92%E4%BD%9C%E3%82%8B/</link>
+      <pubDate>Sun, 12 Jul 2020 17:31:18 +0900</pubDate>
+      
+      <guid>https://himantyu-yuma.github.io/blog/2020/07/eevee%E3%83%AC%E3%83%B3%E3%83%80%E3%83%A9%E3%83%BC%E3%81%A7%E8%89%AF%E3%81%84%E6%84%9F%E3%81%98%E3%81%AE%E3%82%B0%E3%83%A9%E3%82%B9%E3%82%92%E4%BD%9C%E3%82%8B/</guid>
+      <description>概要 Blender2.8から新たに追加されたEEVEEレンダラーで，飲み物が入ったグラスを作りたいという話．
+Cyclesでは簡単にできたけどEEVEEだと躓いたので備忘録として残しておきます．
+因みに最終的にできたのはこんな感じ． 環境  OS: Windows10 Blender v2.83  下準備  グラス作って
+ 下半分の頂点を複製→Fで面貼って中身作って
+ 合体させて
+ オブジェクトモード→W→スムースシェードでシェーディング変えて</description>
+    </item>
     
     <item>
       <title>Hugo&#43;GitHub Pagesで自分用ブログを作る</title>
