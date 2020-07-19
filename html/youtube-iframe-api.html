@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube iframe API</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css">
+</head>
+
+<body>
+    <div id="player"></div>
+    <div class="btn">
+        <button id="play">再生</button>
+        <button id="pause">一時停止</button>
+    </div>
+    <div id="timestamp">
+        <p><span>0:02:10</span>　乾杯</p>
+        <p><span>0:04:50</span>　Ahoy!</p>
+        <p><span>0:09:25</span>　こんぺこ～</p>
+        <p><span>0:11:40</span>　マシュマロ読み開始</p>
+        <p><span>0:11:46</span>　喉ケア</p>
+        <p><span>0:18:30</span>　携帯の待ち受け</p>
+        <p><span>0:22:00</span>　ぺこマリとは？</p>
+        <p><span>0:26:10</span>　乾杯</p>
+        <p><span>0:27:00</span>　船長の照れるエピソード</p>
+        <p><span>0:32:35</span>　モチベ維持の仕方</p>
+        <p><span>0:39:10</span>　最近のファンサについて</p>
+        <p><span>0:42:32</span>　お互いのマネ（地獄）</p>
+        <p><span>0:43:05</span>　残尿感どうしたらいい？</p>
+        <p><span>0:47:00</span>　眠気の克服</p>
+        <p><span>0:51:40</span>　オフファッションについて</p>
+        <p><span>0:57:50</span>　好きなソシャゲキャラ</p>
+        <p><span>1:01:50</span>　Tinderニキ強く生きて…</p>
+        <p><span>1:05:15</span>　ぺーこぺこぺこ（ぺこ語）</p>
+        <p><span>1:09:22</span>　ストレス解消法</p>
+        <p><span>1:12:02</span>　お互いにやってほしいゲーム</p>
+        <p><span>1:17:00</span>　ぺこvsマリ　スマブラ対決</p>
+        <p><span>1:21:50</span>　以降、止まらない大煽り合戦</p>
+    </div>
+
+    <script src="https://www.youtube.com/iframe_api"></script>
+    <script>
+        function onYouTubeIframeAPIReady() {
+            const player = new YT.Player('player', {
+                height: '360',
+                width: '640',
+                videoId: '2SKxme249oQ', // 埋め込みたいvideoIDに適宜差し替え
+                events: {
+                    'onReady': onPlayerReady,   // iframeが準備できたら実行される関数
+                }
+            });
+        }
+
+        const onPlayerReady = event => {
+            // 再生ボタンを押したら再生されるようにする
+            const playBtn = document.getElementById('play');
+            playBtn.addEventListener('click', () => event.target.playVideo());
+
+            // 一時停止ボタンを押したら一時停止されるようにする
+            const pauseBtn = document.getElementById('pause');
+            pauseBtn.addEventListener('click', () => event.target.pauseVideo());
+
+            // 時間を押したらシークされるようにする
+            const timestamps = document.querySelectorAll('span');
+            timestamps.forEach(timestamp => {
+                const time = timestamp.textContent.split(':');
+                const second = parseInt(time[0]) * 360 + parseInt(time[1]) * 60 + parseInt(time[2]);
+
+                timestamp.addEventListener('click', () => event.target.seekTo(second));
+            });
+
+        }
+    </script>
+</body>
+
+</html>

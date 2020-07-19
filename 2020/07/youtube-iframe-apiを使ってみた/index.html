@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<meta property="og:title" content="Youtube iframe APIを使ってみた" />
+<meta property="og:description" content="概要 Youtubeをhtmlにiframeで埋め込んで，再生とかシークとかの操作をしたかったのでやってみた，
+今回は再生，停止，シークをやってみようと思います．
+完成品 環境 ブラウザ: Chrome 83.0
+下準備  htmlファイルを作る &lt;div id=&quot;player&quot;&gt;&lt;/div&gt;をbody内に入れておく(この中にiframeが入ります) body閉じタグ直前に以下のコードを挿入  &lt;script src=&#34;https://www.youtube.com/iframe_api&#34;&gt;&lt;/script&gt; &lt;script&gt; var player; function onYouTubeIframeAPIReady() { const player = new YT." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://himantyu-yuma.github.io/blog/2020/07/youtube-iframe-api%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/" />
+<meta property="og:image" content="https://himantyu-yuma.github.io/blog/images/ogp1.jpg"/>
+<meta property="article:published_time" content="2020-07-20T00:41:18+09:00" />
+<meta property="article:modified_time" content="2020-07-20T00:41:18+09:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://himantyu-yuma.github.io/blog/images/ogp1.jpg"/>
+
+<meta name="twitter:title" content="Youtube iframe APIを使ってみた"/>
+<meta name="twitter:description" content="概要 Youtubeをhtmlにiframeで埋め込んで，再生とかシークとかの操作をしたかったのでやってみた，
+今回は再生，停止，シークをやってみようと思います．
+完成品 環境 ブラウザ: Chrome 83.0
+下準備  htmlファイルを作る &lt;div id=&quot;player&quot;&gt;&lt;/div&gt;をbody内に入れておく(この中にiframeが入ります) body閉じタグ直前に以下のコードを挿入  &lt;script src=&#34;https://www.youtube.com/iframe_api&#34;&gt;&lt;/script&gt; &lt;script&gt; var player; function onYouTubeIframeAPIReady() { const player = new YT."/>
+<meta name="generator" content="Hugo 0.73.0" />
+
+
+    
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Youtube iframe APIを使ってみた",
+  "url": "https://himantyu-yuma.github.io/blog/2020/07/youtube-iframe-api%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/",
+  "wordCount": "344",
+  "datePublished": "2020-07-20T00:41:18+09:00",
+  "dateModified": "2020-07-20T00:41:18+09:00",
+  "author": {
+    "@type": "Person",
+    "name": "笠原 有真"
+  },
+  "keywords": "技術, javascript, web, api"
+}
+</script>
+
+
+
+    <link rel="canonical" href="https://himantyu-yuma.github.io/blog/2020/07/youtube-iframe-api%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/">
+
+    <title>Youtube iframe APIを使ってみた | 備忘録とか</title>
+
+    
+    <!-- combined, minified CSS -->
+    
+    <link href="https://himantyu-yuma.github.io/blog/css/style.3714a3e25ea206819937abb81660d98722c61c086b334eba828cc1f801144d20.css" rel="stylesheet">
+    
+
+    <!-- minified Font Awesome for SVG icons -->
+    
+    <script defer src="https://himantyu-yuma.github.io/blog/js/fontawesome.min.16a86fa8fbdecc0f27392feecb61ee0803a507820bded359407103a49126b52c.js" integrity="sha256-FqhvqPvezA8nOS/uy2HuCAOlB4IL3tNZQHEDpJEmtSw=" crossorigin="anonymous"></script>
+
+    <!-- RSS 2.0 feed -->
+    
+
+    
+<meta property="og:title" content="Youtube iframe APIを使ってみた" />
+<meta property="og:description" content="概要 Youtubeをhtmlにiframeで埋め込んで，再生とかシークとかの操作をしたかったのでやってみた，
+今回は再生，停止，シークをやってみようと思います．
+完成品 環境 ブラウザ: Chrome 83.0
+下準備  htmlファイルを作る &lt;div id=&quot;player&quot;&gt;&lt;/div&gt;をbody内に入れておく(この中にiframeが入ります) body閉じタグ直前に以下のコードを挿入  &lt;script src=&#34;https://www.youtube.com/iframe_api&#34;&gt;&lt;/script&gt; &lt;script&gt; var player; function onYouTubeIframeAPIReady() { const player = new YT." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://himantyu-yuma.github.io/blog/2020/07/youtube-iframe-api%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/" />
+<meta property="og:image" content="https://himantyu-yuma.github.io/blog/images/ogp1.jpg"/>
+<meta property="article:published_time" content="2020-07-20T00:41:18+09:00" />
+<meta property="article:modified_time" content="2020-07-20T00:41:18+09:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://himantyu-yuma.github.io/blog/images/ogp1.jpg"/>
+
+<meta name="twitter:title" content="Youtube iframe APIを使ってみた"/>
+<meta name="twitter:description" content="概要 Youtubeをhtmlにiframeで埋め込んで，再生とかシークとかの操作をしたかったのでやってみた，
+今回は再生，停止，シークをやってみようと思います．
+完成品 環境 ブラウザ: Chrome 83.0
+下準備  htmlファイルを作る &lt;div id=&quot;player&quot;&gt;&lt;/div&gt;をbody内に入れておく(この中にiframeが入ります) body閉じタグ直前に以下のコードを挿入  &lt;script src=&#34;https://www.youtube.com/iframe_api&#34;&gt;&lt;/script&gt; &lt;script&gt; var player; function onYouTubeIframeAPIReady() { const player = new YT."/>
+
+  </head>
+
+  <body>
+
+    
+    <div class="blog-masthead">
+      <div class="container">
+        <nav class="nav blog-nav">
+          <a class="nav-link " href="https://himantyu-yuma.github.io/blog/">Home</a>
+        </nav>
+      </div>
+    </div>
+    
+
+    
+    
+    <header class="blog-header">
+      <div class="container">
+        <h1 class="blog-title" dir="auto"><a href="https://himantyu-yuma.github.io/blog/" rel="home">備忘録とか</a></h1>
+        <p class="lead blog-description" dir="auto">備忘録とか情報共有とか載せていきます．</p>
+      </div>
+    </header>
+    
+    
+
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+
+          
+
+
+<article class="blog-post">
+  <header>
+    <h2 class="blog-post-title" dir="auto"><a href="https://himantyu-yuma.github.io/blog/2020/07/youtube-iframe-api%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/">Youtube iframe APIを使ってみた</a></h2>
+    <p class="blog-post-meta"><time datetime="2020-07-20T00:41:18+09:00">Mon Jul 20, 2020</time> by 笠原 有真 in 
+<span class="fas fa-folder" aria-hidden="true"></span>&nbsp;<a href="https://himantyu-yuma.github.io/blog/categories/%E6%8A%80%E8%A1%93/" rel="category tag">技術</a>
+
+
+<span class="fas fa-tag" aria-hidden="true"></span>&nbsp;<a href="https://himantyu-yuma.github.io/blog/tags/javascript/" rel="tag">javascript</a>, <a href="https://himantyu-yuma.github.io/blog/tags/web/" rel="tag">web</a>, <a href="https://himantyu-yuma.github.io/blog/tags/api/" rel="tag">api</a>
+
+</p>
+  </header>
+  <h2 id="概要">概要</h2>
+<p>Youtubeをhtmlにiframeで埋め込んで，再生とかシークとかの操作をしたかったのでやってみた，<br>
+今回は再生，停止，シークをやってみようと思います．<br>
+<a href="https://himantyu-yuma.github.io/blog/html/youtube-iframe-api.html">完成品</a>
+<img src="https://himantyu-yuma.github.io/blog/images/youtube-iframe-api.png" alt="写真"></p>
+<h2 id="環境">環境</h2>
+<p>ブラウザ: Chrome 83.0</p>
+<h2 id="下準備">下準備</h2>
+<ul>
+<li>htmlファイルを作る</li>
+<li><code>&lt;div id=&quot;player&quot;&gt;&lt;/div&gt;</code>をbody内に入れておく(この中にiframeが入ります)</li>
+<li>body閉じタグ直前に以下のコードを挿入</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://www.youtube.com/iframe_api&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;<span style="color:#f92672">script</span>&gt;
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">player</span>;
+    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">onYouTubeIframeAPIReady</span>() {
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">YT</span>.<span style="color:#a6e22e">Player</span>(<span style="color:#e6db74">&#39;player&#39;</span>, {
+            <span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;360&#39;</span>,
+            <span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;640&#39;</span>,
+            <span style="color:#a6e22e">videoId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;2SKxme249oQ&#39;</span>, <span style="color:#75715e">// 埋め込みたいvideoIDに適宜差し替え
+</span><span style="color:#75715e"></span>            <span style="color:#a6e22e">events</span><span style="color:#f92672">:</span> {
+                <span style="color:#e6db74">&#39;onReady&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">onPlayerReady</span>,   <span style="color:#75715e">// iframeが準備できたら実行される関数
+</span><span style="color:#75715e"></span>            }
+        });
+    }
+&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></div><ul>
+<li>htmlファイルを開いたときに動画が表示されていればOK</li>
+</ul>
+<h2 id="再生してみる">再生してみる</h2>
+<ul>
+<li>とりあえずボタンを配置する</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn&#34;</span>&gt;
+    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;play&#34;</span>&gt;再生&lt;/<span style="color:#f92672">button</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><ul>
+<li>下のコードをonYouTubeIframeAPIReadyの後に追加する</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onPlayerReady</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span> =&gt; {
+    <span style="color:#75715e">// 再生ボタンを押したら再生されるようにする
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">playBtn</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;play&#39;</span>);
+    <span style="color:#a6e22e">playBtn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, () =&gt; <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">playVideo</span>());
+}
+</code></pre></div><ul>
+<li>再生ボタンを押したら再生されるはず</li>
+</ul>
+<h2 id="一時停止してみる">一時停止してみる</h2>
+<ul>
+<li>一時停止ボタンを配置する</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn&#34;</span>&gt;
+    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;play&#34;</span>&gt;再生&lt;/<span style="color:#f92672">button</span>&gt;
+    &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pause&#34;</span>&gt;一時停止&lt;/<span style="color:#f92672">button</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><ul>
+<li>下のコードをonPlayReadyに追加する</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// 一時停止ボタンを押したら一時停止されるようにする
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pauseBtn</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;pause&#39;</span>);
+<span style="color:#a6e22e">pauseBtn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, () =&gt; <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">pauseVideo</span>());
+</code></pre></div><ul>
+<li>一時停止されるはず</li>
+</ul>
+<h2 id="シークしてみる">シークしてみる</h2>
+<ul>
+<li>htmlに以下を追加する(YouTubeのコメ欄にあったタイムスタンプをなんやかんやしたやつ)</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timestamp&#34;</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:02:10&lt;/<span style="color:#f92672">span</span>&gt;　乾杯&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:04:50&lt;/<span style="color:#f92672">span</span>&gt;　Ahoy!&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:09:25&lt;/<span style="color:#f92672">span</span>&gt;　こんぺこ～&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:11:40&lt;/<span style="color:#f92672">span</span>&gt;　マシュマロ読み開始&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:11:46&lt;/<span style="color:#f92672">span</span>&gt;　喉ケア&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:18:30&lt;/<span style="color:#f92672">span</span>&gt;　携帯の待ち受け&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:22:00&lt;/<span style="color:#f92672">span</span>&gt;　ぺこマリとは？&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:26:10&lt;/<span style="color:#f92672">span</span>&gt;　乾杯&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:27:00&lt;/<span style="color:#f92672">span</span>&gt;　船長の照れるエピソード&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:32:35&lt;/<span style="color:#f92672">span</span>&gt;　モチベ維持の仕方&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:39:10&lt;/<span style="color:#f92672">span</span>&gt;　最近のファンサについて&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:42:32&lt;/<span style="color:#f92672">span</span>&gt;　お互いのマネ（地獄）&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:43:05&lt;/<span style="color:#f92672">span</span>&gt;　残尿感どうしたらいい？&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:47:00&lt;/<span style="color:#f92672">span</span>&gt;　眠気の克服&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:51:40&lt;/<span style="color:#f92672">span</span>&gt;　オフファッションについて&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:57:50&lt;/<span style="color:#f92672">span</span>&gt;　好きなソシャゲキャラ&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:01:50&lt;/<span style="color:#f92672">span</span>&gt;　Tinderニキ強く生きて…&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:05:15&lt;/<span style="color:#f92672">span</span>&gt;　ぺーこぺこぺこ（ぺこ語）&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:09:22&lt;/<span style="color:#f92672">span</span>&gt;　ストレス解消法&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:12:02&lt;/<span style="color:#f92672">span</span>&gt;　お互いにやってほしいゲーム&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:17:00&lt;/<span style="color:#f92672">span</span>&gt;　ぺこvsマリ　スマブラ対決&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:21:50&lt;/<span style="color:#f92672">span</span>&gt;　以降、止まらない大煽り合戦&lt;/<span style="color:#f92672">p</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+</code></pre></div><ul>
+<li>下のコードをonPlayReadyに追加する</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#75715e">// 時間を押したらシークされるようにする
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">timestamps</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;span&#39;</span>);
+<span style="color:#a6e22e">timestamps</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">timestamp</span> =&gt; {
+    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">timestamp</span>.<span style="color:#a6e22e">textContent</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;:&#39;</span>);
+    <span style="color:#75715e">// 全部秒数に直す
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">second</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#a6e22e">time</span>[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">*</span> <span style="color:#ae81ff">360</span> <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">time</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">time</span>[<span style="color:#ae81ff">2</span>]);
+
+    <span style="color:#a6e22e">timestamp</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, () =&gt; <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">seekTo</span>(<span style="color:#a6e22e">second</span>));
+});
+</code></pre></div><ul>
+<li>時間をクリックすると，タイムスタンプクリックしたときみたいな挙動をするはず</li>
+</ul>
+<h2 id="コード全文">コード全文</h2>
+<p>※今回は見た目整えるためにwater.css読み込んでます</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+&lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ja&#34;</span>&gt;
+
+&lt;<span style="color:#f92672">head</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">charset</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;UTF-8&#34;</span>&gt;
+    &lt;<span style="color:#f92672">meta</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;viewport&#34;</span> <span style="color:#a6e22e">content</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;width=device-width, initial-scale=1.0&#34;</span>&gt;
+    &lt;<span style="color:#f92672">title</span>&gt;YouTube iframe API&lt;/<span style="color:#f92672">title</span>&gt;
+    &lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/gh/kognise/water.css@latest/dist/light.min.css&#34;</span>&gt;
+&lt;/<span style="color:#f92672">head</span>&gt;
+
+&lt;<span style="color:#f92672">body</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;player&#34;</span>&gt;&lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;btn&#34;</span>&gt;
+        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;play&#34;</span>&gt;再生&lt;/<span style="color:#f92672">button</span>&gt;
+        &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;pause&#34;</span>&gt;一時停止&lt;/<span style="color:#f92672">button</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+    &lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">id</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;timestamp&#34;</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:02:10&lt;/<span style="color:#f92672">span</span>&gt;　乾杯&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:04:50&lt;/<span style="color:#f92672">span</span>&gt;　Ahoy!&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:09:25&lt;/<span style="color:#f92672">span</span>&gt;　こんぺこ～&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:11:40&lt;/<span style="color:#f92672">span</span>&gt;　マシュマロ読み開始&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:11:46&lt;/<span style="color:#f92672">span</span>&gt;　喉ケア&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:18:30&lt;/<span style="color:#f92672">span</span>&gt;　携帯の待ち受け&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:22:00&lt;/<span style="color:#f92672">span</span>&gt;　ぺこマリとは？&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:26:10&lt;/<span style="color:#f92672">span</span>&gt;　乾杯&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:27:00&lt;/<span style="color:#f92672">span</span>&gt;　船長の照れるエピソード&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:32:35&lt;/<span style="color:#f92672">span</span>&gt;　モチベ維持の仕方&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:39:10&lt;/<span style="color:#f92672">span</span>&gt;　最近のファンサについて&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:42:32&lt;/<span style="color:#f92672">span</span>&gt;　お互いのマネ（地獄）&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:43:05&lt;/<span style="color:#f92672">span</span>&gt;　残尿感どうしたらいい？&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:47:00&lt;/<span style="color:#f92672">span</span>&gt;　眠気の克服&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:51:40&lt;/<span style="color:#f92672">span</span>&gt;　オフファッションについて&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;0:57:50&lt;/<span style="color:#f92672">span</span>&gt;　好きなソシャゲキャラ&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:01:50&lt;/<span style="color:#f92672">span</span>&gt;　Tinderニキ強く生きて…&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:05:15&lt;/<span style="color:#f92672">span</span>&gt;　ぺーこぺこぺこ（ぺこ語）&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:09:22&lt;/<span style="color:#f92672">span</span>&gt;　ストレス解消法&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:12:02&lt;/<span style="color:#f92672">span</span>&gt;　お互いにやってほしいゲーム&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:17:00&lt;/<span style="color:#f92672">span</span>&gt;　ぺこvsマリ　スマブラ対決&lt;/<span style="color:#f92672">p</span>&gt;
+        &lt;<span style="color:#f92672">p</span>&gt;&lt;<span style="color:#f92672">span</span>&gt;1:21:50&lt;/<span style="color:#f92672">span</span>&gt;　以降、止まらない大煽り合戦&lt;/<span style="color:#f92672">p</span>&gt;
+    &lt;/<span style="color:#f92672">div</span>&gt;
+
+    &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://www.youtube.com/iframe_api&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+    &lt;<span style="color:#f92672">script</span>&gt;
+        <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">onYouTubeIframeAPIReady</span>() {
+            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">YT</span>.<span style="color:#a6e22e">Player</span>(<span style="color:#e6db74">&#39;player&#39;</span>, {
+                <span style="color:#a6e22e">height</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;360&#39;</span>,
+                <span style="color:#a6e22e">width</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;640&#39;</span>,
+                <span style="color:#a6e22e">videoId</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;2SKxme249oQ&#39;</span>, <span style="color:#75715e">// 埋め込みたいvideoIDに適宜差し替え
+</span><span style="color:#75715e"></span>                <span style="color:#a6e22e">events</span><span style="color:#f92672">:</span> {
+                    <span style="color:#e6db74">&#39;onReady&#39;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">onPlayerReady</span>,   <span style="color:#75715e">// iframeが準備できたら実行される関数
+</span><span style="color:#75715e"></span>                }
+            });
+        }
+
+        <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">onPlayerReady</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">event</span> =&gt; {
+            <span style="color:#75715e">// 再生ボタンを押したら再生されるようにする
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">playBtn</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;play&#39;</span>);
+            <span style="color:#a6e22e">playBtn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, () =&gt; <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">playVideo</span>());
+
+            <span style="color:#75715e">// 一時停止ボタンを押したら一時停止されるようにする
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pauseBtn</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">getElementById</span>(<span style="color:#e6db74">&#39;pause&#39;</span>);
+            <span style="color:#a6e22e">pauseBtn</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, () =&gt; <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">pauseVideo</span>());
+
+            <span style="color:#75715e">// 時間を押したらシークされるようにする
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">timestamps</span> <span style="color:#f92672">=</span> document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#e6db74">&#39;span&#39;</span>);
+            <span style="color:#a6e22e">timestamps</span>.<span style="color:#a6e22e">forEach</span>(<span style="color:#a6e22e">timestamp</span> =&gt; {
+                <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">time</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">timestamp</span>.<span style="color:#a6e22e">textContent</span>.<span style="color:#a6e22e">split</span>(<span style="color:#e6db74">&#39;:&#39;</span>);
+                <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">second</span> <span style="color:#f92672">=</span> parseInt(<span style="color:#a6e22e">time</span>[<span style="color:#ae81ff">0</span>]) <span style="color:#f92672">*</span> <span style="color:#ae81ff">360</span> <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">time</span>[<span style="color:#ae81ff">1</span>]) <span style="color:#f92672">*</span> <span style="color:#ae81ff">60</span> <span style="color:#f92672">+</span> parseInt(<span style="color:#a6e22e">time</span>[<span style="color:#ae81ff">2</span>]);
+
+                <span style="color:#a6e22e">timestamp</span>.<span style="color:#a6e22e">addEventListener</span>(<span style="color:#e6db74">&#39;click&#39;</span>, () =&gt; <span style="color:#a6e22e">event</span>.<span style="color:#a6e22e">target</span>.<span style="color:#a6e22e">seekTo</span>(<span style="color:#a6e22e">second</span>));
+            });
+
+        }
+    &lt;/<span style="color:#f92672">script</span>&gt;
+&lt;/<span style="color:#f92672">body</span>&gt;
+
+&lt;/<span style="color:#f92672">html</span>&gt;
+</code></pre></div>
+
+  
+
+  
+  <hr>
+  <footer>
+
+  
+    <section>
+    <h4>Share</h4>
+    <nav class="nav sharing-icons">
+      <a class="nav-item" href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fhimantyu-yuma.github.io%2fblog%2f2020%2f07%2fyoutube-iframe-api%25E3%2582%2592%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6%25E3%2581%25BF%25E3%2581%259F%2f" title="Share on Facebook"><span class="fab fa-facebook-f fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fhimantyu-yuma.github.io%2fblog%2f2020%2f07%2fyoutube-iframe-api%25E3%2582%2592%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6%25E3%2581%25BF%25E3%2581%259F%2f" title="Share on LinkedIn"><span class="fab fa-linkedin-in fa-2x" aria-hidden="true"></span></a>
+      <a class="nav-item" href="https://twitter.com/intent/tweet?url=https%3a%2f%2fhimantyu-yuma.github.io%2fblog%2f2020%2f07%2fyoutube-iframe-api%25E3%2582%2592%25E4%25BD%25BF%25E3%2581%25A3%25E3%2581%25A6%25E3%2581%25BF%25E3%2581%259F%2f&amp;text=Youtube%20iframe%20API%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%81%9f" title="Tweet this"><span class="fab fa-twitter fa-2x"></span></a>
+    </nav>
+  </section>
+
+  
+
+  
+  </footer>
+  
+
+</article> 
+
+
+
+        </div> <!-- /.blog-main -->
+
+        <aside class="col-sm-3 ml-auto blog-sidebar">
+  
+  <section class="sidebar-module sidebar-module-inset">
+    <h4>ABOUT ME</h4>
+    <p dir="auto">笠原有真<br>小樽商科大学<br>社会情報学科3年<br>木村ゼミ<br>創作活動部<br>室内管弦楽団(Vc.)</p>
+  </section>
+  
+
+  
+    <section class="sidebar-module">
+    <h4>最近の投稿</h4>
+    <ol class="list-unstyled">
+
+
+<li><a href="https://himantyu-yuma.github.io/blog/2020/07/youtube-iframe-api%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/">Youtube iframe APIを使ってみた</a></li>
+
+<li><a href="https://himantyu-yuma.github.io/blog/2020/07/eevee%E3%83%AC%E3%83%B3%E3%83%80%E3%83%A9%E3%83%BC%E3%81%A7%E8%89%AF%E3%81%84%E6%84%9F%E3%81%98%E3%81%AE%E3%82%B0%E3%83%A9%E3%82%B9%E3%82%92%E4%BD%9C%E3%82%8B/">EEVEEレンダラーで良い感じのグラスを作る</a></li>
+
+<li><a href="https://himantyu-yuma.github.io/blog/2020/07/hugo-github-pages%E3%81%A7%E8%87%AA%E5%88%86%E7%94%A8%E3%83%96%E3%83%AD%E3%82%B0%E3%82%92%E4%BD%9C%E3%82%8B/">Hugo+GitHub Pagesで自分用ブログを作る</a></li>
+
+    </ol>
+  </section>
+
+  
+
+  
+  <section class="sidebar-module">
+    <h4>外部リンク</h4>
+    <ol class="list-unstyled">
+      
+      <li><a href="https://himantyu-yuma.github.io/portfolio/">Portfolio</a></li>
+      
+      <li><a href="https://twitter.com/k_y_kenzen">Twitter</a></li>
+      
+    </ol>
+  </section>
+  
+  
+  <section class="sidebar-module">
+    <h4>カテゴリ</h4>
+    <ol class="list-unstyled">
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/categories/3d%E3%83%A2%E3%83%87%E3%83%AA%E3%83%B3%E3%82%B0">3dモデリング</a></li>
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/categories/%E3%81%9D%E3%81%AE%E4%BB%96">その他</a></li>
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/categories/%E6%8A%80%E8%A1%93">技術</a></li>
+      
+    </ol>
+  </section>
+  
+  
+  <section class="sidebar-module">
+    <h4>タグ</h4>
+    <ol class="list-unstyled">
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/tags/api">api</a></li>
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/tags/blender">blender</a></li>
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/tags/eevee">eevee</a></li>
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/tags/hugo">hugo</a></li>
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/tags/javascript">javascript</a></li>
+      
+      <li><a href="https://himantyu-yuma.github.io/blog/tags/web">web</a></li>
+      
+    </ol>
+  </section>
+  
+
+</aside>
+
+      </div> <!-- /.row -->
+    </div> <!-- /.container -->
+    
+
+    
+    <footer class="blog-footer">
+      <p dir="auto">
+      
+      Blog template created by <a href="https://twitter.com/mdo">@mdo</a>, ported to Hugo by <a href='https://twitter.com/mralanorth'>@mralanorth</a>.
+      
+      </p>
+      <p>
+      <a href="#">Back to top</a>
+      </p>
+    </footer>
+    
+
+  </body>
+
+</html>

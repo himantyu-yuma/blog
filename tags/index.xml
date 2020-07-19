@@ -6,10 +6,37 @@
     <description>Recent content in Tags on 備忘録とか</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-ja</language>
-    <lastBuildDate>Sun, 12 Jul 2020 17:31:18 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jul 2020 00:41:18 +0900</lastBuildDate>
     
 	<atom:link href="https://himantyu-yuma.github.io/blog/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>api</title>
+      <link>https://himantyu-yuma.github.io/blog/tags/api/</link>
+      <pubDate>Mon, 20 Jul 2020 00:41:18 +0900</pubDate>
+      
+      <guid>https://himantyu-yuma.github.io/blog/tags/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>javascript</title>
+      <link>https://himantyu-yuma.github.io/blog/tags/javascript/</link>
+      <pubDate>Mon, 20 Jul 2020 00:41:18 +0900</pubDate>
+      
+      <guid>https://himantyu-yuma.github.io/blog/tags/javascript/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web</title>
+      <link>https://himantyu-yuma.github.io/blog/tags/web/</link>
+      <pubDate>Mon, 20 Jul 2020 00:41:18 +0900</pubDate>
+      
+      <guid>https://himantyu-yuma.github.io/blog/tags/web/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Blender</title>
