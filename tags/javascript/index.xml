@@ -19,7 +19,8 @@
       <guid>https://himantyu-yuma.github.io/blog/2020/07/youtube-iframe-api%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F/</guid>
       <description>概要 Youtubeをhtmlにiframeで埋め込んで，再生とかシークとかの操作をしたかったのでやってみた，
 今回は再生，停止，シークをやってみようと思います．
-完成品 環境 ブラウザ: Chrome 83.0
+完成品 なんか途中で挙動おかしかったら最後のコード全文見てみてください．
+環境 ブラウザ: Chrome 83.0
 下準備  htmlファイルを作る &amp;lt;div id=&amp;quot;player&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;をbody内に入れておく(この中にiframeが入ります) body閉じタグ直前に以下のコードを挿入  &amp;lt;script src=&amp;#34;https://www.youtube.com/iframe_api&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script&amp;gt; var player; function onYouTubeIframeAPIReady() { const player = new YT.</description>
     </item>
     
